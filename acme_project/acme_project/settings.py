@@ -17,6 +17,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'birthday.apps.BirthdayConfig',
     'pages.apps.PagesConfig',
+    'django_bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -72,6 +73,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+MEDIA_ROOT = BASE_DIR / 'media'
 
 LANGUAGE_CODE = 'ru-RU'
 
