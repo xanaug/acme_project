@@ -3,7 +3,7 @@ from django import forms
 
 from django.core.exceptions import ValidationError
 # Импортируем класс модели Birthday.
-from .models import Birthday
+from .models import Birthday, Congratulation
 # Импортируем функцию-валидатор.
 from .validators import real_age
 from django.core.mail import send_mail
@@ -31,11 +31,7 @@ class BirthdayForm(forms.ModelForm):
     class Meta:
         # Указываем модель, на основе которой должна строиться форма.
         model = Birthday
-        # Указываем, что надо отобразить все поля.
-        fields = '__all__'
-        # Чтобы форма работала как раньше — нужно указать,
-        # что для поля с датой рождения используется
-        # виджет с типом данных date.
+        exclude = ('author',),
         widgets = {
             'birthday': forms.DateInput(attrs={'type': 'date'})
         }
@@ -67,3 +63,9 @@ class BirthdayForm(forms.ModelForm):
             raise ValidationError(
                 'Мы тоже любим Битлз, но введите, пожалуйста, настоящее имя!'
             )
+
+
+class CongratulationForm(forms.ModelForm):
+    class Meta:
+        model = Congratulation
+        fields = ('text',)
